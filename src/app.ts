@@ -1,13 +1,13 @@
 import express, { Response, Request } from "express";
 import dotenv from "dotenv";
 
+import { startBot } from './bot'
+
 dotenv.config();
-interface ReqRes {
-    req: Request;
-    res: Response
-}
 
 const app = express();
+
+startBot();
 
 app.get("/", (req: Request, res: Response): void => {
     res.send("Hi There !");

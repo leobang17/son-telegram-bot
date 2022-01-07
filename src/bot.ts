@@ -1,13 +1,18 @@
-import { Bot } from 'grammy';
+import { Telegraf } from 'telegraf';
 import dotenv from 'dotenv'
+import { Bot } from 'grammy';
 
 dotenv.config();
 
-export const startBot = (): void => {
+const TOKEN : string = process.env.BOT_TOKEN as string;
 
-    const bot = new Bot(process.env.BOT_TOKEN as string);
+if (!TOKEN) {
+    throw new Error("Token not exists");
+}
 
-    bot.on("message", (ctx) => ctx.reply("Hi there!"))
+const bot = new Telegraf(TOKEN);
 
-    bot.start();
-};
+bot.on('text', (ctx) => ctx.reply("aaa"));
+
+
+export default bot;

@@ -3,6 +3,8 @@ import dotenv from "dotenv";
 import axios from "axios";
 
 import { webHookInit } from "./webhook";
+import { updateRoutes } from "./app/index";
+
 
 // envs
 dotenv.config();
@@ -23,9 +25,7 @@ app.use(express.urlencoded());
 // app.use(bot.webhookCallback());
 
 // Routes.
-app.get("/", (req: Request, res: Response): void => {
-    res.send("Hi There !");
-});
+app.use("/", updateRoutes);
 
 app.get("/sendText", async (req: Request, res: Response): Promise<void> => {
     chatIds.map(async (chatId: number, index: number) => {
@@ -41,27 +41,6 @@ app.get("/sendText", async (req: Request, res: Response): Promise<void> => {
     // console.log(res2.data);
 
     res.send();
-});
-
-app.post(URI, async (req: Request, res: Response) => {
-    console.log(req.body);
-    const chatId: number = req.body.message.chat.id;
-    const text: string = req.body.message.text;
-    const time: Date = new Date(req.body.message.date * 1000);
-    const photo = req.body.message.photo;
-
-    console.log(`Time: ${time}`);
-
-    // await axios.post(`${TELEGRAM_API}/sendMessage`, {
-    //     chat_id: chatId,
-    //     text: text
-    // });
-
-    return res.send();
-});
-
-app.get('/getFootball', async (req: Request, res:Response) => {
-    
 });
 
 

@@ -8,7 +8,7 @@ const URI: string = `/webhook/${BOT_TOKEN}`;
 
 const router = express.Router();
 
-router.post(URI, async (req: Request, res: Response) => {
+router.post("/", async (req: Request, res: Response) => {
     const params = req.body;
     const chatIdRes = await getChatId(params);
     return res.send("success");    

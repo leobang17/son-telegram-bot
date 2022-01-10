@@ -1,7 +1,7 @@
 import updateService from "./updateService";
 
 
-const getUserId = async ( params : any ) => {
+const insertUserId = async ( params : any ) => {
     const chatId: number = params.message.from.id;
     try {
         const getChatIdRes = await updateService.getByUserId(chatId);
@@ -10,8 +10,8 @@ const getUserId = async ( params : any ) => {
             await updateService.insertUserId(chatId);
             console.log("Successfully Inserted!");
         }
+        
         return getChatIdRes;
-
     } catch (err) {
         console.error(err);
     }
@@ -29,6 +29,6 @@ const getAllUserId = async () => {
 
 
 export {
-    getUserId,
+    insertUserId,
     getAllUserId,
 }

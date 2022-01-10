@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 
 import { webHookInit } from "./webhook";
 import { updateRoutes } from "./app/index";
+import getData from "./app/football";
 
 
 // envs

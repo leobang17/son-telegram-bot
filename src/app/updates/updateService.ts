@@ -3,32 +3,46 @@ import updateDao from "./updateDao";
 
 
 
-const getChatId = async (chatId: number) => {
+const getByUserId = async (chatId: number) => {
     try {
         const connection = await pool.getConnection();
-        const getChatRes = await updateDao.getByChatId(connection, chatId);
+        const getUserIdRes = await updateDao.getByUserId(connection, chatId);
         connection.release();
 
-        return getChatRes;
+        return getUserIdRes;
     } catch(err) {
         console.error(err);
     };
 };
 
-const insertChatId = async (chatId: number) => {
+const insertUserId = async (chatId: number) => {
     try {
         const connection = await pool.getConnection();
-        const insertChatIdRes = await updateDao.insertChatId(connection, chatId);
+        const insertUserIdRes = await updateDao.insertUserId(connection, chatId);
         connection.release();
 
-        return insertChatIdRes;
+        return insertUserIdRes;
     
     } catch (err) {
         console.error(err);
     }
 }
 
+const getAllUserId = async () => {
+    try {
+        const connection = await pool.getConnection();
+        const getAllUserIdRes = await updateDao.getAllUserId(connection);
+        connection.release();
+        
+        return getAllUserIdRes;
+
+    } catch(err) {
+        console.error(err);
+    }
+}
+
 export default {
-    getChatId,
-    insertChatId,
+    getByUserId,
+    insertUserId,
+    getAllUserId,
 };

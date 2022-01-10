@@ -1,13 +1,13 @@
 import updateService from "./updateService";
 
 
-export const getChatId = async ( params : any ) => {
+const getUserId = async ( params : any ) => {
     const chatId: number = params.message.from.id;
     try {
-        const getChatIdRes = await updateService.getChatId(chatId);
+        const getChatIdRes = await updateService.getByUserId(chatId);
         
         if (!getChatIdRes) {
-            await updateService.insertChatId(chatId);
+            await updateService.insertUserId(chatId);
             console.log("Successfully Inserted!");
         }
         return getChatIdRes;
@@ -16,3 +16,19 @@ export const getChatId = async ( params : any ) => {
         console.error(err);
     }
 };
+
+const getAllUserId = async () => {
+    try {
+        const getAllUserIdRes = await updateService.getAllUserId();
+        
+        return getAllUserIdRes;
+    } catch (err) {
+        console.error(err);
+    };
+}
+
+
+export {
+    getUserId,
+    getAllUserId,
+}

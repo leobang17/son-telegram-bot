@@ -1,6 +1,6 @@
 
 
-const getByChatId = async (connection: any, chatId: number) => {
+const getByUserId = async (connection: any, chatId: number) => {
     const query = `
         SELECT userId 
         FROM User
@@ -10,7 +10,7 @@ const getByChatId = async (connection: any, chatId: number) => {
     return chatIdRows;
 }
 
-const insertChatId = async (connection: any, chatId: number) => {
+const insertUserId = async (connection: any, chatId: number) => {
     const query = `
         INSERT INTO User (userId)
         VALUES (${chatId});
@@ -19,7 +19,17 @@ const insertChatId = async (connection: any, chatId: number) => {
     return chatIdRows;
 }
 
+const getAllUserId = async (connection: any) => {
+    const query = `
+        SELECT userId
+        FROM User;
+    `;
+    const [userIdRows] = await connection.query(query);
+    return userIdRows;
+}
+
 export default {
-    getByChatId,
-    insertChatId,
+    getByUserId,
+    insertUserId,
+    getAllUserId,
 }

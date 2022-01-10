@@ -28,8 +28,18 @@ const getAllUserId = async (connection: any) => {
     return userIdRows;
 }
 
+const deleteUserId = async (connection: any, userId: number) => {
+    const query = `
+        DELETE FROM User
+        WHERE userId = "${userId}";
+    `;
+    
+    await connection.query(query);
+}
+
 export default {
     getByUserId,
     insertUserId,
     getAllUserId,
+    deleteUserId,
 }

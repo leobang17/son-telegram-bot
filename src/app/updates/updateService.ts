@@ -41,8 +41,20 @@ const getAllUserId = async () => {
     }
 }
 
+const deleteUserId = async (userId: number) => {
+    try {
+        const connection = await pool.getConnection();
+        await updateDao.deleteUserId(connection, userId);
+        connection.release();
+        
+    } catch(err) {
+        console.error(err);
+    }
+}
+
 export default {
     getByUserId,
     insertUserId,
     getAllUserId,
+    deleteUserId,
 };

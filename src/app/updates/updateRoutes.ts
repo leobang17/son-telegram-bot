@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
 import dotenv from 'dotenv';
-import { insertUserId } from "./updateController";
+import { insertUserId, deleteUserId } from "./updateController";
 
 const { NGROK_URL, PORT, BOT_TOKEN } = process.env;
 
@@ -25,7 +25,7 @@ router.post("/", async (req: Request, res: Response) => {
                 await insertUserId(params);
                 break;
             case Commands.Exit:
-                
+                await deleteUserId(params);
                 break;
         }
 

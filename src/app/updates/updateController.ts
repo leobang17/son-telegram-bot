@@ -1,14 +1,15 @@
 import updateService from "./updateService";
 
 
-const insertUserId = async ( params : any ) => {
-    const chatId: number = params.message.from.id;
+const insertUserId = async ( chatId : number ) => {
     try {
         const getChatIdRes = await updateService.getByUserId(chatId);
         
         if (!getChatIdRes) {
             await updateService.insertUserId(chatId);
             console.log("Successfully Inserted!");
+        } else {
+            console.log("already exists");
         }
 
         return getChatIdRes;
@@ -27,8 +28,8 @@ const getAllUserId = async () => {
     };
 }
 
-const deleteUserId = async ( params: any ) => {
-    const userId: number = params.message.from.id;
+const deleteUserId = async ( chatId: number ) => {
+    const userId: number = chatId;
 
     try {
         const getChatIdRes = await updateService.getByUserId(userId);
@@ -37,7 +38,7 @@ const deleteUserId = async ( params: any ) => {
             await updateService.deleteUserId(userId);
             console.log("Successfully deleted!");
         } else {
-            console.log("없는 유저");
+            console.log("User not exist");
         }
     } catch (err) {
         console.error(err);

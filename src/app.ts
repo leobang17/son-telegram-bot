@@ -1,5 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
+import morgan from 'morgan';
 
 import { webHookInit } from "./webhook";
 import { updateRoutes } from "./app/index";
@@ -18,6 +19,7 @@ const app = express();
 // middlewares
 app.use(express.json());
 app.use(express.urlencoded());
+app.use(morgan('dev'));
 
 
 // Routes.

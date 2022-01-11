@@ -18,7 +18,6 @@ enum MemberStatus {
 const router = express.Router();
 
 router.post("/", async (req: Request, res: Response) => {
-    console.log("리퀘스트가 일어나야 에러가 나오지", req);
     const params = req.body.message;
     const chatId: number = params.from.id;
     const statusUpdated = req.body.my_chat_member;
@@ -27,7 +26,7 @@ router.post("/", async (req: Request, res: Response) => {
     if (params.entities && params.entities[0].type === "bot_command") {
         const content: string = params.text;
         const command: string = content.split(" ")[0].toLowerCase();
-        console.log("커맨드", command);
+
         switch (command) {
             case Commands.Start:
                 await insertUserId(chatId);
@@ -38,14 +37,13 @@ router.post("/", async (req: Request, res: Response) => {
         };
     };
 
-    // // Handle Block event
+    // Handle Block event
     if (statusUpdated) {
         switch (statusUpdated.new_chat_member.status) {
             case MemberStatus.Blocked:
                 await deleteUserId(chatId);
                 break;
         };
-        
     }
 
     return res.send("success");    

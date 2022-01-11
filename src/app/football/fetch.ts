@@ -1,5 +1,5 @@
 import FootballAPI from ".";
-import { FixtureParams, EventParams } from "./interfaces";
+import { FixtureParams, EventParams, LineupParams } from "./interfaces";
 
 const getFixture = async (params: FixtureParams) => {
     try {
@@ -19,8 +19,18 @@ const getEvents = async (params: EventParams) => {
     };
 }
 
+const getLineup = async (params: LineupParams) => {
+    try {
+        const res = await FootballAPI.get('/fixtures/lineups', { params });
+        return res.data;
+    }catch(err) {
+        console.error(err);
+    }
+}
+
 
 export {
     getFixture,
     getEvents,
+    getLineup,
 }

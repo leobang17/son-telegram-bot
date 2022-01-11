@@ -5,6 +5,7 @@ import morgan from 'morgan';
 import { webHookInit } from "./webhook";
 import { updateRoutes } from "./app/index";
 import getData from "./app/football";
+import { getFixture } from "./app/football/fetch";
 
 
 // envs

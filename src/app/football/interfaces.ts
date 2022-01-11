@@ -12,6 +12,12 @@ export interface EventParams {
     live?: boolean
 }
 
+export interface LineupParams {
+    fixture: number,
+    team?: number,
+    player?: number,
+}
+
 export interface TeamInfoInterface {
     [team: string]: {
         id: number,

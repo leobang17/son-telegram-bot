@@ -5,6 +5,13 @@ export interface FixtureParams {
     timezone?: string,    
 }
 
+export interface EventParams {
+    fixture: number,
+    team?: number,
+    player?: number,
+    live?: boolean
+}
+
 export interface TeamInfoInterface {
     [team: string]: {
         id: number,
@@ -15,7 +22,7 @@ export interface TeamInfoInterface {
 export interface LeagueInterface {
     [league: string]: {
         id: number,
-        type: "League" | "Cup",
+        type: LeagueType,
     }
 }
 

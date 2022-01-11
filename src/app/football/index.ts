@@ -4,8 +4,13 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 // axios config
-axios.defaults.headers.common['x-apisports-key'] = process.env.API_KEY as string;
-axios.defaults.headers.common['content-type'] = 'application/x-www-form-urlencoded';
+const FootballAPI = axios.create({
+    baseURL: 'https://v3.football.api-sports.io',
+});
+
+FootballAPI.defaults.timeout = 5000;
+FootballAPI.defaults.headers.common['x-apisports-key'] = process.env.API_KEY as string;
+FootballAPI.defaults.headers.common['content-type'] = 'application/x-www-form-urlencoded';
 
 
 interface GetDataParams {
@@ -40,4 +45,4 @@ const getData = async (params: GetDataParams) => {
     }
 };
 
-export default getData;
+export default FootballAPI;

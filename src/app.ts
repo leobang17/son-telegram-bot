@@ -4,8 +4,6 @@ import morgan from 'morgan';
 
 import { webHookInit } from "./webhook";
 import { updateRoutes } from "./app/index";
-import getData from "./app/football";
-import { getFixture } from "./app/football/fetch";
 
 
 // envs
@@ -25,6 +23,19 @@ app.use(morgan('dev'));
 
 // Routes.
 app.use(URI, updateRoutes);
+
+
+import FormData from 'form-data';
+import fs from 'fs';
+import path from "path";
+
+const form: FormData = new FormData();
+// form.append("key", fs.createReadStream(''));
+// console.log(fs.createReadStream(path.join(__dirname, './static/son-lose.jpeg')));
+// console.log(form);
+// console.log(form);
+// console.log("--------------");
+// console.log(fs.createReadStream('./src/static/son-goal.jpeg'));
 
 
 // Server Init

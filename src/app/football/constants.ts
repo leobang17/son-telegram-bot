@@ -77,6 +77,14 @@ const LEAGUE: LeagueInterface = {
         id: 45,
         type: LeagueType.Cup
     },
+    "LaLiga": {
+        id: 140,
+        type: LeagueType.League
+    },
+    "Bundes": {
+        id: 78,
+        type: LeagueType.League
+    },
 }
 
 export default {

@@ -1,11 +1,12 @@
-interface Update {
+// Interfaces
+export interface Update {
     update_id: number;
     message?: Message;
     edited_message?: EditedMessage;
     my_chat_member?: ChatMemeberUpdated;
 }
 
-interface Message {
+export interface Message {
     message_id: number;
     date: number;
     from?: User;
@@ -15,11 +16,11 @@ interface Message {
     caption?: string;
 }
 
-interface EditedMessage {
+export interface EditedMessage {
     
 }
 
-interface ChatMemeberUpdated {
+export interface ChatMemeberUpdated {
     chat: Chat;
     from: User;
     date: number;
@@ -28,7 +29,7 @@ interface ChatMemeberUpdated {
     invite_link?: any;
 }
 
-interface User {
+export interface User {
     id: number;
     is_bot: boolean;
     first_name: string;
@@ -40,7 +41,7 @@ interface User {
     supports_inline_queries?: boolean;
 }
 
-interface Chat {
+export interface Chat {
     id: number;
     type: ChatType;
     title?: string;
@@ -49,27 +50,29 @@ interface Chat {
     last_name?: string;    
 }
 
-interface ChatMember {
+export interface ChatMember {
     user: User;
     status: MemeberStatus;
     
 }
 
-interface MessageEntity {
+export interface MessageEntity {
     type: EntityType,
     offset: number;
     length: number;
 }
 
 
-enum ChatType {
+
+// Enums
+export enum ChatType {
     PRIVATE = "private",
     GROUP = "group",
     SUPER_GROUP = "supergroup",
     CHANNEL = "channel",
 }
 
-enum EntityType {
+export enum EntityType {
     MENTION = "mention",
     HASHTAG = "hashtag",
     CASHTAG = "cashtag",
@@ -80,12 +83,12 @@ enum EntityType {
     ITALIC = "italic",
 }
 
-enum MemeberStatus {
+export enum MemeberStatus {
     OWNER = "creator",
     ADMINISTRATOR = "administrator",
     MEMBER = "member",
     RESTRICTED = "restricted",
     LEFT = "left",
     BANNED = "kicked",
+}
 
-};

@@ -8,7 +8,7 @@ import { memberStatusHandler, messageHandler } from "./routeHandler";
 const router = express.Router();
 
 router.post("/", async (req: Request, res: Response) => {
-    console.log(req.body.message.entities);
+    console.log(req.body);
     // console.log("this is default post");
     // const params = req.body.message;
     // const chatId: number = params.from.id;

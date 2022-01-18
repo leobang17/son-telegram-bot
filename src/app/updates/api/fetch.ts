@@ -1,7 +1,5 @@
 import TelegramAPI from ".";
-import FormData from "form-data";
-import fs from "fs";
-import { EventParams, sendPhotoAPIParams } from "../interfaces";
+import { EventParams } from "../interfaces/interfaces";
 
 const exitChat = async (chatId: number) => {
     const params = {
@@ -20,7 +18,7 @@ const sendEvents = async (events: EventParams, chatId: number) => {
     const params = {
         chat_id: chatId,
         photo: events.url,
-        caption: events.content
+        caption: events.content,
     }
     try {
         const res = await TelegramAPI.get('/sendPhoto', { params });
@@ -30,12 +28,14 @@ const sendEvents = async (events: EventParams, chatId: number) => {
     }
 }
 
-const sendLineups = async (chatId: number) => {
+const sendLineups = async (events: EventParams, chatId: number) => {
     const params = {
-
+        chat_id: chatId,
+        text: events.content
     };
     try {
-        
+        const res = await TelegramAPI.get('/sendMessage', { params });
+        console.log(res.data);
     } catch (err) {
         console.error(err);
     }

@@ -2,7 +2,7 @@ import express, { Request, Response } from "express";
 import dotenv from 'dotenv';
 
 import { insertUserId, deleteUserId } from "./updateController";
-import { Commands, MemberStatus } from "./interfaces/interfaces";
+
 import { memberStatusHandler, messageHandler } from "./routeHandler";
 
 const router = express.Router();

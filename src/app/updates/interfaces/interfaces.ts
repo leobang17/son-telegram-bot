@@ -26,7 +26,3 @@ export enum Commands {
     Exit = "/exit",
 };
 
-export enum MemberStatus {
-    Blocked = "kicked",
-};
-

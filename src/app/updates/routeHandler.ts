@@ -1,5 +1,5 @@
 import { Commands } from "./interfaces/interfaces";
-import { EntityType, Message } from "./interfaces/telegramInterfaces";
+import { ChatMemberUpdated, EntityType, Message, MemberStatus } from "./interfaces/telegramInterfaces";
 import { deleteUserId, insertUserId } from "./updateController";
 
 export const messageHandler = async (params: any) => {
@@ -20,8 +20,17 @@ export const messageHandler = async (params: any) => {
 }
 
 
-export const memberStatusHandler = async <T>(params: T) => {
-    
+export const memberStatusHandler = async (params: { update_id: number, my_chat_member: ChatMemberUpdated }) => {
+    const { update_id, my_chat_member } = params;
+    const chat_id: number = my_chat_member.from.id;
+    const updatedStatus: MemberStatus = my_chat_member.new_chat_member.status!;
+
+    switch (updatedStatus) {
+        case MemberStatus.BANNED:
+            await deleteUserId(chat_id);
+            break;
+    }
+
 }
 
 

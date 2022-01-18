@@ -3,7 +3,7 @@ export interface Update {
     update_id: number;
     message?: Message;
     edited_message?: EditedMessage;
-    my_chat_member?: ChatMemeberUpdated;
+    my_chat_member?: ChatMemberUpdated;
 }
 
 export interface Message {
@@ -20,7 +20,7 @@ export interface EditedMessage {
     
 }
 
-export interface ChatMemeberUpdated {
+export interface ChatMemberUpdated {
     chat: Chat;
     from: User;
     date: number;
@@ -52,7 +52,7 @@ export interface Chat {
 
 export interface ChatMember {
     user: User;
-    status: MemeberStatus;
+    status: MemberStatus;
     
 }
 
@@ -83,7 +83,7 @@ export enum EntityType {
     ITALIC = "italic",
 }
 
-export enum MemeberStatus {
+export enum MemberStatus {
     OWNER = "creator",
     ADMINISTRATOR = "administrator",
     MEMBER = "member",

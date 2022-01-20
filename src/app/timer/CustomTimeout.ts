@@ -19,4 +19,3 @@ export default class CustomTimeout {
         return this.timeoutId;
     }
 }
-

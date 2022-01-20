@@ -12,6 +12,9 @@ export default class TimerInterval {
 
     kill() {
         clearInterval(this.intervalId);
-        console.log("kill timer");
+    }
+
+    getIntervalId() {
+        return this.intervalId;
     }
 }

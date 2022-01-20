@@ -1,11 +1,9 @@
-export default class TimerInterval {
+export default class CustomInterval {
     private intervalId: NodeJS.Timer;
-    private intervalFunc: {(): void};
     
-    constructor (interval: number, intervalFunc: { (): void}) {
-        this.intervalFunc = intervalFunc;
+    constructor (interval: number, executionFunc: { (): void}) {
         this.intervalId = setInterval(
-            intervalFunc, 
+            executionFunc, 
             interval
         );
     }

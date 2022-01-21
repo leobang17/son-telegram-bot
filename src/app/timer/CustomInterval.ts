@@ -1,36 +1,40 @@
 export default class CustomInterval {
-    private intervalId: NodeJS.Timer | null;
-    private executionFunc: { (): number | void };
-    private interval: number;
+    private timerId: NodeJS.Timer | null;
+    private executionFunc: { (): boolean | void };
+    private term?: number;
 
-    constructor (executionFunc: { (): void}, interval: number) {
+    constructor (executionFunc: { (): boolean | void}) {
         this.executionFunc = executionFunc;
-        this.interval = interval
-        this.intervalId = null;
+        this.timerId = null;
     }
 
-    private async setCondition () {
+    private async killOnCondition () {
         const res = await this.executionFunc();
         if (!res) {
             this.kill();
         }
     }
 
-    public set() {
-        this.intervalId = setInterval(() => this.setCondition(), this.interval);
-        console.log(`interval started... \tper ${this.interval} millisec`);
+    set(term: number) {
+        this.kill();
+        this.term = term;
+        this.timerId = setInterval(() => this.killOnCondition(), this.term);
+        console.log(`interval started... \tper ${this.term} millisec`);
     }
 
-    public kill() {
-        if (!this.intervalId) {
-            console.log(`You should first use set() method before you use kill() method`);
+    kill() {
+        if (!this.timerId) {
             return;
         }
-        clearInterval(this.intervalId);
+        clearInterval(this.timerId);
         console.log(`interval killed.`);
     }
 
-    public getIntervalId() {
-        return this.intervalId;
+    getTimerId() {
+        return this.timerId;
+    }
+
+    getTerm() {
+        return this.term;
     }
 }

@@ -10,7 +10,7 @@ export default class CustomInterval {
 
     private async killOnCondition () {
         const res = await this.executionFunc();
-        if (!res) {
+        if (res) {
             this.kill();
         }
     }
@@ -37,4 +37,23 @@ export default class CustomInterval {
     getTerm() {
         return this.term;
     }
+}
+
+let x = 0;
+
+const test = () => {
+    x += 1
+    console.log(x);
+    if (x === 3) {
+        return true;
+    }
+}
+
+const testInterval = new CustomInterval(test);
+
+
+const start = async () => {
+    await setTimeout(() => {
+        testInterval.set(1000);
+    }, 2000);
 }

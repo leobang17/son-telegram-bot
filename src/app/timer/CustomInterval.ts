@@ -22,6 +22,21 @@ export default class CustomInterval {
         console.log(`interval started... \tper ${this.term} millisec`);
     }
 
+    testSet(term: number) {
+        this.term = term
+        const promiseFunc = (res: any) => {
+            this.timerId = setInterval(async () => {
+                const result = await this.executionFunc();
+                if (result) {
+                    this.kill();
+                    res();
+                }
+            }, this.term)
+        }
+        console.log(`interval started... \tper ${this.term} millisec`);
+        return new Promise(promiseFunc);
+    }
+
     kill() {
         if (!this.timerId) {
             return;
@@ -49,11 +64,12 @@ const test = () => {
     }
 }
 
-const testInterval = new CustomInterval(test);
+const t1 = new CustomInterval(test);
 
 
-const start = async () => {
-    await setTimeout(() => {
-        testInterval.set(1000);
-    }, 2000);
+const a = async () => {
+    await t1.testSet(1000);
+    console.log("끝이다!")
 }
+
+a();

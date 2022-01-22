@@ -1,5 +1,6 @@
 export default abstract class CustomTimeout {
     protected abstract StartsBefore: number;
+    protected abstract StartsAfter: number;
     protected timerId!: NodeJS.Timeout;
     
     // 시간 계산하는 method

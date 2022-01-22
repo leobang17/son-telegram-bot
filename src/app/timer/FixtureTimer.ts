@@ -5,7 +5,7 @@ export default class FixtureTimer extends CustomTimeout {
     protected StartsAfter!: number;
 
 
-    protected deriveStartTime(): number {
+    protected async deriveStartTime(): Promise<number> {
         return 1;
     }
 }

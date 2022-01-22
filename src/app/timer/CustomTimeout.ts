@@ -4,6 +4,7 @@ export default abstract class CustomTimeout {
     // setTimeout의 2번째 parameter
     protected abstract StartsAfter: number;
     protected timerId!: NodeJS.Timeout;
+    protected abstract executionFunc(): void;
     
     // 시작 시간 계산하는 method
     protected abstract deriveStartTime(): Promise<number>;
@@ -17,11 +18,18 @@ export default abstract class CustomTimeout {
     // timeeout set 하는 function
     async set() {
         this.deriveStartsAfter();
-        this.timerId = await setTimeout(async () => {
-            console.log("aaa");
-            await this.set();
-        }, this.StartsBefore);
+        try {
+            this.timerId = await setTimeout(async () => {
+                await this.executionFunc()
+                await this.set();
+            }, this.StartsBefore);
+        } catch (err) {
+            console.error(err);
+        }
     }
 
+    getTimerId(): NodeJS.Timeout {
+        return this.timerId;
+    }
     
 };

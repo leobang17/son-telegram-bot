@@ -8,30 +8,20 @@ export default class CustomInterval {
         this.timerId = null;
     }
 
-    private async killOnCondition () {
-        const res = await this.executionFunc();
-        if (res) {
+    private async killOnCondition (res: any) {
+        const result = await this.executionFunc();
+        if (result) {
             this.kill();
+            res();
         }
     }
 
-    set(term: number) {
-        this.kill();
-        this.term = term;
-        this.timerId = setInterval(() => this.killOnCondition(), this.term);
-        console.log(`interval started... \tper ${this.term} millisec`);
-    }
-
-    testSet(term: number) {
+    set(term: number): Promise<void> {
         this.term = term
         const promiseFunc = (res: any) => {
-            this.timerId = setInterval(async () => {
-                const result = await this.executionFunc();
-                if (result) {
-                    this.kill();
-                    res();
-                }
-            }, this.term)
+            this.timerId = setInterval(
+                () => this.killOnCondition(res),
+                this.term)
         }
         console.log(`interval started... \tper ${this.term} millisec`);
         return new Promise(promiseFunc);
@@ -68,7 +58,7 @@ const t1 = new CustomInterval(test);
 
 
 const a = async () => {
-    await t1.testSet(1000);
+    await t1.set(1000);
     console.log("끝이다!")
 }
 

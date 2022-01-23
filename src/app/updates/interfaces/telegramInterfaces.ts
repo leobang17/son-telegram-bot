@@ -92,3 +92,23 @@ export enum MemberStatus {
     BANNED = "kicked",
 }
 
+
+interface EVENT_PARAMS {
+    EVENT_TYPE: LINEUP | RATING | FIXTURE;
+}
+
+interface LINEUP {
+    
+}
+
+interface RATING {
+    
+}
+
+interface FIXTURE {
+    TYPE: {
+        GOAL: number
+        
+    }
+}
+

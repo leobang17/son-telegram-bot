@@ -25,19 +25,6 @@ app.use(morgan('dev'));
 app.use(URI, updateRoutes);
 
 
-import FormData from 'form-data';
-import fs from 'fs';
-import path from "path";
-
-const form: FormData = new FormData();
-// form.append("key", fs.createReadStream(''));
-// console.log(fs.createReadStream(path.join(__dirname, './static/son-lose.jpeg')));
-// console.log(form);
-// console.log(form);
-// console.log("--------------");
-// console.log(fs.createReadStream('./src/static/son-goal.jpeg'));
-
-
 // Server Init
 app.listen(PORT, async () => {
     console.log(`Server app listening at port: ${PORT}`);

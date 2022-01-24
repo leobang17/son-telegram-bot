@@ -11,7 +11,10 @@ const WEBHOOK_URL: string = NGROK_URL + URI;
 
 
 export const webHookInit = async () => {
-    const res = await axios.get(`${TELEGRAM_API}/setWebhook?url=${WEBHOOK_URL}`);
+    const params = {
+        url: WEBHOOK_URL,
+    };
+    const res = await axios.get(`${TELEGRAM_API}/setWebhook`, { params });
     console.log("Webhook status: ", res.data);
 };
 

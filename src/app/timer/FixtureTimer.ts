@@ -11,7 +11,3 @@ export default class FixtureTimer extends CustomTimeout {
         return 1;
     }
 }
-
-const t1 = new FixtureTimer();
-
-t1.set();

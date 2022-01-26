@@ -15,6 +15,10 @@ export default abstract class CustomTimeout {
         this.StartsAfter = startTime - Date.now() - this.StartsBefore;
     }
 
+    constructor (executionFunc: any){
+        this.executionFunc = executionFunc;
+    }
+
     // timeeout set 하는 function
     async set() {
         this.deriveStartsAfter();
